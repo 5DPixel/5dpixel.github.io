@@ -1,5 +1,13 @@
 <html>
   <body>
-    <button>Test</button>
+    <button id="order">Test</button>
   </body>
+  <head>
+    <script>
+      const [btn] = document.querySelectorAll("order");
+      btn.addEventListener("click", () => {
+          alert("HELlo")
+      })
+    </script>
+  </head>
 </html>
