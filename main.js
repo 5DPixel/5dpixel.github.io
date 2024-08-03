@@ -1,10 +1,8 @@
 const [btn] = document.querySelectorAll("#start");
 
 btn.addEventListener("click", () => {
-    const [btn] = document.querySelectorAll("#start");
-
-btn.addEventListener("click", () => {
-  // const polySynth = new Tone.PolySynth(Tone.Synth, {
+  if("AudioContext" in window || "webkitAudioContext" in window){
+      // const polySynth = new Tone.PolySynth(Tone.Synth, {
   //     oscillator: {
   //         type: "sawtooth"  // Sawtooth wave for a fuller sound
   //     },
@@ -40,21 +38,17 @@ btn.addEventListener("click", () => {
   sampler.connect(reverb);
 
 
-  const scale = ["F#5", "G#5", "A#5", "B5", "C#5", "D#5", "E#5"];
-
-  const backScale = ["F#3", "G#3", "A#3", "B3", "C#3", "D#3", "E#3"];
-
-  const lowScale = ["F#2", "G#2", "A#2", "B2", "C#2", "D#2", "E#2"];
+  const scale = ["F#", "G#", "A#", "B", "C#", "D#", "E#"];
 
   const loopA = new Tone.Loop((time) => {
-    sampler.triggerAttackRelease(scale[Math.floor(Math.random() * scale.length)], 4, time);
+    sampler.triggerAttackRelease(scale[Math.floor(Math.random() * scale.length)].concat("4"), 4, time);
 
-    sampler.triggerAttackRelease(backScale[Math.floor(Math.random() * backScale.length)], 4, time);
+    sampler.triggerAttackRelease(scale[Math.floor(Math.random() * scale.length)].concat("3"), 4, time);
 
-    sampler.triggerAttackRelease(lowScale[Math.floor(Math.random() * lowScale.length)], 4, time);
+    sampler.triggerAttackRelease(scale[Math.floor(Math.random() * scale.length)].concat("2"), 4, time);
     //     polySynth.triggerAttackRelease(scale[Math.floor(Math.random() * scale.length)], "4n", time);
   }, "4n").start(0);
 
   Tone.getTransport().start();
+  }
 });
-})
